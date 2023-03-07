@@ -4,6 +4,8 @@ import 'package:fitness_app/screens/UserLogin.dart';
 import 'package:fitness_app/screens/centerLogin.dart';
 import 'package:flutter/material.dart';
 
+import '../screens/signup_screen.dart';
+
 class WelcomeBody extends StatefulWidget {
   const WelcomeBody({super.key});
 
@@ -42,7 +44,7 @@ class _WelcomeBodyState extends State<WelcomeBody> {
         ),
         InkWell(
           onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (ctx)=>UserLogin()));
+            Navigator.push(context, MaterialPageRoute(builder: (ctx)=>SignupScreen()));
           },
           child: Container(
 

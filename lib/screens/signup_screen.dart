@@ -12,16 +12,29 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-
   final _formKey = GlobalKey<FormState>();
   final fullNameEditingController = TextEditingController();
   final emailEditingController = TextEditingController();
   final passwordEditingController = TextEditingController();
+  final confirmPasswordEditingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-      Center(
+      extendBodyBehindAppBar: true,
+      backgroundColor: primaryColor,
+      appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: Colors.black,
+              ))),
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -32,8 +45,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 15.0),
                 decoration: BoxDecoration(
                     color: Colors.black,
-                    borderRadius: BorderRadius.circular(25)
-                ),
+                    borderRadius: BorderRadius.circular(25)),
                 child: Form(
                   key: _formKey,
                   child: Column(
@@ -70,13 +82,11 @@ class _SignupScreenState extends State<SignupScreen> {
                         },
                         decoration: InputDecoration(
                           enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white), //<-- SEE HERE
+                            borderSide:
+                                BorderSide(color: Colors.white), //<-- SEE HERE
                           ),
                           labelText: 'User Name',
-                          labelStyle: TextStyle(
-                              color: whiteTxt,
-                              fontSize: 19
-                          ),
+                          labelStyle: TextStyle(color: whiteTxt, fontSize: 19),
                         ),
                       ),
                       TextFormField(
@@ -85,15 +95,27 @@ class _SignupScreenState extends State<SignupScreen> {
                         keyboardType: TextInputType.emailAddress,
                         textInputAction: TextInputAction.next,
                         style: loginText,
+                        onSaved: (value) {
+                          emailEditingController.text = value!;
+                        },
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return ("Please Enter Your Email");
+                          }
+                          // reg expression for email validation
+                          if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                              .hasMatch(value)) {
+                            return ("Please Enter a valid email");
+                          }
+                          return null;
+                        },
                         decoration: InputDecoration(
                           enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white), //<-- SEE HERE
+                            borderSide:
+                                BorderSide(color: Colors.white), //<-- SEE HERE
                           ),
                           labelText: 'Email',
-                          labelStyle: TextStyle(
-                              color: whiteTxt,
-                              fontSize: 19
-                          ),
+                          labelStyle: TextStyle(color: whiteTxt, fontSize: 19),
                         ),
                       ),
                       TextFormField(
@@ -101,27 +123,66 @@ class _SignupScreenState extends State<SignupScreen> {
                         autofocus: false,
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.done,
+                        obscureText: true,
+                        validator: (value) {
+                          RegExp regex = new RegExp(r'^.{6,}$');
+                          if (value!.isEmpty) {
+                            return ("Password is required for login");
+                          }
+                          if (!regex.hasMatch(value)) {
+                            return ("Enter Valid Password(Min. 6 Character)");
+                          }
+                        },
+                        onSaved: (value) {
+                          passwordEditingController.text = value!;
+                        },
                         style: loginText,
                         decoration: InputDecoration(
                           enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white), //<-- SEE HERE
+                            borderSide:
+                                BorderSide(color: Colors.white), //<-- SEE HERE
                           ),
                           labelText: 'Password',
-                          labelStyle: TextStyle(
-                              color: whiteTxt,
-                              fontSize: 19
+                          labelStyle: TextStyle(color: whiteTxt, fontSize: 19),
+                        ),
+                      ),
+                      TextFormField(
+                        autofocus: false,
+                        keyboardType: TextInputType.emailAddress,
+                        textInputAction: TextInputAction.next,
+                        controller: confirmPasswordEditingController,
+                        obscureText: true,
+                        validator: (value) {
+                          if (confirmPasswordEditingController.text !=
+                              passwordEditingController.text) {
+                            return "Password don't match";
+                          }
+                          return null;
+                        },
+                        onSaved: (value) {
+                          confirmPasswordEditingController.text = value!;
+                        },
+                        style: loginText,
+                        decoration: InputDecoration(
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.white), //<-- SEE HERE
                           ),
+                          labelText: 'Confirm password',
+                          labelStyle: TextStyle(color: whiteTxt, fontSize: 19),
                         ),
                       ),
                       SizedBox(
-                        height: 50,
+                        height: 30,
                       ),
                       InkWell(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (ctx)=>userInterface()));
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (ctx) => userInterface()));
                         },
                         child: Container(
-
                           margin: const EdgeInsets.only(top: 20.0),
                           height: 45,
                           width: 150,
@@ -131,21 +192,45 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                           child: Center(
                               child: Text(
-                                'LOGIN',
-                                style: btnText,
-                              )),
+                            'Sign up',
+                            style: btnText,
+                          )),
                         ),
                       ),
-                      SizedBox(height: 20,),
+                      SizedBox(
+                        height: 20,
+                      ),
                     ],
                   ),
                 ),
               ),
             ),
+            Row(
+              children: [
+                Text(
+                  "Already have an account ?",
+                  style: TextStyle(color: Colors.black),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    'Login',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
           ],
         ),
       ),
-      backgroundColor: primaryColor,
     );
   }
 }

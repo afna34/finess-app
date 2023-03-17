@@ -1,9 +1,9 @@
 import 'package:fitness_app/constants/color.dart';
 import 'package:fitness_app/constants/style.dart';
-import 'package:fitness_app/screens/centerInterface.dart';
+import 'package:fitness_app/screens/centerHomeScreen/centerInterface.dart';
 import 'package:flutter/material.dart';
 
-import 'userInterface.dart';
+import 'userHomeScreen/userInterface.dart';
 
 class CenterSettings extends StatefulWidget {
   const CenterSettings({Key? key}) : super(key: key);

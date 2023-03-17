@@ -1,30 +1,26 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fitness_app/screens/UserLogin.dart';
-import 'package:fitness_app/screens/userInterface.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../constants/color.dart';
-import '../constants/style.dart';
-import '../model/userModel.dart';
+import '../../constants/color.dart';
+import '../../constants/style.dart';
+import '../centerHomeScreen/centerInterface.dart';
+import '../centerSignup/centerSignup.dart';
 
-class SignupScreen extends StatefulWidget {
-  const SignupScreen({Key? key}) : super(key: key);
+class CenterLogin extends StatefulWidget {
+  const CenterLogin({Key? key}) : super(key: key);
 
   @override
-  State<SignupScreen> createState() => _SignupScreenState();
+  State<CenterLogin> createState() => _CenterLoginState();
 }
 
-class _SignupScreenState extends State<SignupScreen> {
-  final _auth = FirebaseAuth.instance;
-  String? errorMessage;
+class _CenterLoginState extends State<CenterLogin> {
   final _formKey = GlobalKey<FormState>();
-  final userNameEditingController = TextEditingController();
-  final emailEditingController = TextEditingController();
-  final passwordEditingController = TextEditingController();
-  final confirmPasswordEditingController = TextEditingController();
-
+  final _auth = FirebaseAuth.instance;
+  // string for displaying the error Message
+  String? errorMessage;
+  final emailEditingControl = TextEditingController();
+  final passwordEditingControl = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,48 +59,20 @@ class _SignupScreenState extends State<SignupScreen> {
                           height: 30,
                         ),
                         Text(
-                          'Create your account',
+                          'Login your account',
                           style: submitBtn,
                         ),
                         SizedBox(
                           height: 25,
                         ),
                         TextFormField(
-                          controller: userNameEditingController,
-                          autofocus: false,
-                          keyboardType: TextInputType.name,
-                          textInputAction: TextInputAction.next,
-                          style: loginText,
-                          onSaved: (value) {
-                            controller: userNameEditingController.text = value!;
-                          },
-                          validator: (value) {
-                            RegExp regex = new RegExp(r'^.{3,}$');
-                            if (value!.isEmpty) {
-                              return ("Name cannot be Empty");
-                            }
-                            if (!regex.hasMatch(value)) {
-                              return ("Enter Valid name(Min. 3 Character)");
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.white), //<-- SEE HERE
-                            ),
-                            labelText: 'User Name',
-                            labelStyle: TextStyle(color: whiteTxt, fontSize: 19),
-                          ),
-                        ),
-                        TextFormField(
-                          controller: emailEditingController,
+                          controller: emailEditingControl,
                           autofocus: false,
                           keyboardType: TextInputType.emailAddress,
                           textInputAction: TextInputAction.next,
                           style: loginText,
                           onSaved: (value) {
-                            emailEditingController.text = value!;
+                            emailEditingControl.text = value!;
                           },
                           validator: (value) {
                             if (value!.isEmpty) {
@@ -120,14 +88,14 @@ class _SignupScreenState extends State<SignupScreen> {
                           decoration: InputDecoration(
                             enabledBorder: UnderlineInputBorder(
                               borderSide:
-                                  BorderSide(color: Colors.white), //<-- SEE HERE
+                              BorderSide(color: Colors.white), //<-- SEE HERE
                             ),
                             labelText: 'Email',
                             labelStyle: TextStyle(color: whiteTxt, fontSize: 19),
                           ),
                         ),
                         TextFormField(
-                          controller: passwordEditingController,
+                          controller: passwordEditingControl,
                           autofocus: false,
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.done,
@@ -142,41 +110,15 @@ class _SignupScreenState extends State<SignupScreen> {
                             }
                           },
                           onSaved: (value) {
-                            passwordEditingController.text = value!;
+                            passwordEditingControl.text = value!;
                           },
                           style: loginText,
                           decoration: InputDecoration(
                             enabledBorder: UnderlineInputBorder(
                               borderSide:
-                                  BorderSide(color: Colors.white), //<-- SEE HERE
+                              BorderSide(color: Colors.white), //<-- SEE HERE
                             ),
                             labelText: 'Password',
-                            labelStyle: TextStyle(color: whiteTxt, fontSize: 19),
-                          ),
-                        ),
-                        TextFormField(
-                          autofocus: false,
-                          keyboardType: TextInputType.emailAddress,
-                          textInputAction: TextInputAction.next,
-                          controller: confirmPasswordEditingController,
-                          obscureText: true,
-                          validator: (value) {
-                            if (confirmPasswordEditingController.text !=
-                                passwordEditingController.text) {
-                              return "Password don't match";
-                            }
-                            return null;
-                          },
-                          onSaved: (value) {
-                            confirmPasswordEditingController.text = value!;
-                          },
-                          style: loginText,
-                          decoration: InputDecoration(
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.white), //<-- SEE HERE
-                            ),
-                            labelText: 'Confirm password',
                             labelStyle: TextStyle(color: whiteTxt, fontSize: 19),
                           ),
                         ),
@@ -185,7 +127,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                         InkWell(
                           onTap: () {
-                            signUp(emailEditingController.text, passwordEditingController.text);
+                            signIn(emailEditingControl.text, passwordEditingControl.text);
                           },
                           child: Container(
                             margin: const EdgeInsets.only(top: 20.0),
@@ -197,9 +139,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             ),
                             child: Center(
                                 child: Text(
-                              'Sign up',
-                              style: btnText,
-                            )),
+                                  'LOGIN',
+                                  style: btnText,
+                                )),
                           ),
                         ),
                         SizedBox(
@@ -215,15 +157,15 @@ class _SignupScreenState extends State<SignupScreen> {
                 child: Row(
                   children: [
                     Text(
-                      "Already have an account ?",
+                      "Don't have an account ?",
                       style: TextStyle(color: Colors.black),
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (ctx)=>UserLogin()));
+                        Navigator.push(context, MaterialPageRoute(builder: (ctx)=>CenterSignup()));
                       },
                       child: Text(
-                        'Login',
+                        'Sign up',
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w500,
@@ -242,20 +184,21 @@ class _SignupScreenState extends State<SignupScreen> {
       ),
     );
   }
-
-  void signUp(String email, String password) async {
+  void signIn(String email, String password) async {
     if (_formKey.currentState!.validate()) {
       try {
         await _auth
-            .createUserWithEmailAndPassword(email: email, password: password)
-            .then((value) => {postDetailsToFirestore()})
-            .catchError((e) {
-          Fluttertoast.showToast(msg: e!.message);
+            .signInWithEmailAndPassword(email: email, password: password)
+            .then((uid) => {
+          Fluttertoast.showToast(msg: "Login Successful"),
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) =>centerInterface())),
         });
       } on FirebaseAuthException catch (error) {
         switch (error.code) {
           case "invalid-email":
             errorMessage = "Your email address appears to be malformed.";
+
             break;
           case "wrong-password":
             errorMessage = "Your password is wrong.";
@@ -276,35 +219,8 @@ class _SignupScreenState extends State<SignupScreen> {
             errorMessage = "An undefined Error happened.";
         }
         Fluttertoast.showToast(msg: errorMessage!);
+        print(error.code);
       }
     }
-  }
-
-  postDetailsToFirestore() async {
-    // calling our firestore
-    // calling our user model
-    // sedning these values
-
-    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-    User? worker = _auth.currentUser;
-
-    UserModel workerModel = UserModel();
-
-    // writing all the values
-    workerModel.email = worker!.email;
-    workerModel.uid = worker.uid;
-    workerModel.userName = userNameEditingController.text;
-    workerModel.password = passwordEditingController.text;
-
-    await firebaseFirestore
-        .collection("UserDetails")
-        .doc(userNameEditingController.text)
-        .set(workerModel.toMap());
-    Fluttertoast.showToast(msg: "Account created successfully :) ");
-
-    Navigator.pushAndRemoveUntil(
-        (context),
-        MaterialPageRoute(builder: (context) => userInterface()),
-            (route) => false);
   }
 }

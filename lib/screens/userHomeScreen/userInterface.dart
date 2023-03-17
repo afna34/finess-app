@@ -2,7 +2,7 @@ import 'package:fitness_app/constants/color.dart';
 import 'package:fitness_app/constants/color.dart';
 import 'package:fitness_app/constants/color.dart';
 import 'package:fitness_app/constants/style.dart';
-import 'package:fitness_app/screens/centerInterface.dart';
+import 'package:fitness_app/screens/centerHomeScreen/centerInterface.dart';
 import 'package:flutter/material.dart';
 
 class userInterface extends StatefulWidget {
@@ -20,7 +20,6 @@ class _userInterfaceState extends State<userInterface> {
         child: Stack(
           children: <Widget>[
             Container(
-
                 child:
             Image(image: AssetImage
               (
@@ -28,22 +27,6 @@ class _userInterfaceState extends State<userInterface> {
             ),
 
             )),
-
-            // Container(
-            //   child: Positioned(
-            //       right: 130,
-            //       top: 190,
-            //     child: Container(
-            //
-            //       height: 45,
-            //       width: 150,
-            //       decoration: BoxDecoration(
-            //         color: boxColor,
-            //         borderRadius: BorderRadius.circular(25),
-            //       ),
-            //     )
-            //   ),
-            // ),
             Container(
               margin: EdgeInsets.fromLTRB(0, 216.5, 0, 0),
               height: 650,
@@ -58,36 +41,6 @@ class _userInterfaceState extends State<userInterface> {
                     child:
                     Text('Chekout top fitness centers\n',style: shadowTxt,),
                   ),
-
-                  //search bar starting
-                  Container(
-                    height: 52,
-                    width: 300,
-                    decoration: BoxDecoration(
-                      color: boxColor,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                          child: Image(
-                            image: AssetImage
-                              (
-                              'images/searchIcone.png',
-                            ),
-                            height: 25,
-                            width: 25,
-                          ),
-                        ),
-                        Container(
-                          child: Text('  Search your center',style: shadowTxt2,),
-                        ),
-                      ],
-                    ),
-                  ),
-                  //search bar ending
-
                   Container(
 
                     child: Column(

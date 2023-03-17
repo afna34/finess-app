@@ -5,16 +5,18 @@ import 'package:fitness_app/constants/color.dart';
 import 'package:fitness_app/constants/color.dart';
 import 'package:fitness_app/constants/color.dart';
 import 'package:fitness_app/constants/style.dart';
-import 'package:fitness_app/screens/userInterface.dart';
+import 'package:fitness_app/screens/userHomeScreen/userInterface.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../constants/color.dart';
-import '../constants/color.dart';
-import '../constants/color.dart';
-import '../constants/color.dart';
-import '../constants/color.dart';
-import '../constants/style.dart';
+import '../../constants/color.dart';
+import '../../constants/color.dart';
+import '../../constants/color.dart';
+import '../../constants/color.dart';
+import '../../constants/color.dart';
+import '../../constants/style.dart';
+import '../userHomeScreen/userHomeScreen.dart';
+import '../userSignup/signup_screen.dart';
 
 class UserLogin extends StatefulWidget {
   const UserLogin({Key? key}) : super(key: key);
@@ -171,7 +173,7 @@ class _UserLoginState extends State<UserLogin> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (ctx)=>UserLogin()));
+                        Navigator.push(context, MaterialPageRoute(builder: (ctx)=>SignupScreen()));
                       },
                       child: Text(
                         'Sign up',
@@ -201,7 +203,7 @@ class _UserLoginState extends State<UserLogin> {
             .then((uid) => {
           Fluttertoast.showToast(msg: "Login Successful"),
           Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => userInterface())),
+              MaterialPageRoute(builder: (context) => UserHomeScreen())),
         });
       } on FirebaseAuthException catch (error) {
         switch (error.code) {

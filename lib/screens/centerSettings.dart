@@ -1,9 +1,8 @@
 import 'package:fitness_app/constants/color.dart';
 import 'package:fitness_app/constants/style.dart';
 import 'package:fitness_app/screens/centerHomeScreen/centerInterface.dart';
+import 'package:fitness_app/screens/userHomeScreen/userHomeScreen.dart';
 import 'package:flutter/material.dart';
-
-import 'userHomeScreen/userInterface.dart';
 
 class CenterSettings extends StatefulWidget {
   const CenterSettings({Key? key}) : super(key: key);
@@ -158,7 +157,7 @@ class _CenterSettingsState extends State<CenterSettings> {
                     ),
                     InkWell(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (ctx)=>userInterface()));
+                        Navigator.push(context, MaterialPageRoute(builder: (ctx)=>UserHomeScreen()));
                       },
                       child: Container(
 

@@ -107,16 +107,11 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                                           padding: const EdgeInsets.all(15.0),
                                           child: Row(
                                             children: [
-                                              ClipRect(
-                                                borderRadius:
-                                                BorderRadius.circular(100),
-                                                child: Image.network(
-                                                  centerDocument['imageUrl'],
-                                                  fit: BoxFit.cover,
-                                                  width: 60,
-                                                  height: 60,
-                                                ),
+                                              CircleAvatar(
+                                                backgroundImage:
+                                                NetworkImage(centerDocument['imageUrl'],),
                                               ),
+                                              SizedBox(width: 20,),
                                               Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,

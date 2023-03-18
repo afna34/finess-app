@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fitness_app/screens/userHomeScreen/userHomeScreen.dart';
 import 'package:fitness_app/screens/userLogin/UserLogin.dart';
-import 'package:fitness_app/screens/userHomeScreen/userInterface.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -304,7 +304,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
     Navigator.pushAndRemoveUntil(
         (context),
-        MaterialPageRoute(builder: (context) => userInterface()),
+        MaterialPageRoute(builder: (context) => UserHomeScreen()),
             (route) => false);
   }
 }

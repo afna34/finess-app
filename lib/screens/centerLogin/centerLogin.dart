@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fitness_app/screens/centerHomeScreen/centerHomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -192,7 +193,7 @@ class _CenterLoginState extends State<CenterLogin> {
             .then((uid) => {
           Fluttertoast.showToast(msg: "Login Successful"),
           Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) =>centerInterface())),
+              MaterialPageRoute(builder: (context) =>CenterHomeScreen())),
         });
       } on FirebaseAuthException catch (error) {
         switch (error.code) {

@@ -35,7 +35,12 @@ class _CenterSignupState extends State<CenterSignup> {
   final catchingEditingControl = TextEditingController();
   final locationEditingControl = TextEditingController();
   final summaryEditingControl = TextEditingController();
+  final trainerEditingControl = TextEditingController();
   final studentsJoinedEditingControl = TextEditingController();
+  final qualificationEditingControl = TextEditingController();
+  final feeAmountEditingControl = TextEditingController();
+  final feeDetailsEditingControl = TextEditingController();
+  final contactEditingControl = TextEditingController();
   final passwordEditingControl = TextEditingController();
   final confirmPasswordEditingControl = TextEditingController();
 
@@ -214,6 +219,30 @@ class _CenterSignupState extends State<CenterSignup> {
                             ),
                           ),
                           TextFormField(
+                            controller: trainerEditingControl,
+                            autofocus: false,
+                            keyboardType: TextInputType.name,
+                            textInputAction: TextInputAction.next,
+                            style: loginText,
+                            onSaved: (value) {
+                              trainerEditingControl.text = value!;
+                            },
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return ("cannot be Empty");
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Colors.white), //<-- SEE HERE
+                              ),
+                              labelText: 'Trainer name',
+                              labelStyle: TextStyle(color: whiteTxt, fontSize: 19),
+                            ),
+                          ),
+                          TextFormField(
                             controller: studentsJoinedEditingControl,
                             autofocus: false,
                             keyboardType: TextInputType.name,
@@ -234,6 +263,102 @@ class _CenterSignupState extends State<CenterSignup> {
                                 BorderSide(color: Colors.white), //<-- SEE HERE
                               ),
                               labelText: 'Number of students joined',
+                              labelStyle: TextStyle(color: whiteTxt, fontSize: 19),
+                            ),
+                          ),
+                          TextFormField(
+                            controller: qualificationEditingControl,
+                            autofocus: false,
+                            keyboardType: TextInputType.name,
+                            textInputAction: TextInputAction.next,
+                            style: loginText,
+                            onSaved: (value) {
+                              qualificationEditingControl.text = value!;
+                            },
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return ("cannot be Empty");
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Colors.white), //<-- SEE HERE
+                              ),
+                              labelText: 'Qualification',
+                              labelStyle: TextStyle(color: whiteTxt, fontSize: 19),
+                            ),
+                          ),
+                          TextFormField(
+                            controller: feeAmountEditingControl,
+                            autofocus: false,
+                            keyboardType: TextInputType.name,
+                            textInputAction: TextInputAction.next,
+                            style: loginText,
+                            onSaved: (value) {
+                              feeAmountEditingControl.text = value!;
+                            },
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return ("cannot be Empty");
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Colors.white), //<-- SEE HERE
+                              ),
+                              labelText: 'Fee amount',
+                              labelStyle: TextStyle(color: whiteTxt, fontSize: 19),
+                            ),
+                          ),
+                          TextFormField(
+                            controller: feeDetailsEditingControl,
+                            autofocus: false,
+                            keyboardType: TextInputType.name,
+                            textInputAction: TextInputAction.next,
+                            style: loginText,
+                            onSaved: (value) {
+                              feeDetailsEditingControl.text = value!;
+                            },
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return ("cannot be Empty");
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Colors.white), //<-- SEE HERE
+                              ),
+                              labelText: 'Fee Details',
+                              labelStyle: TextStyle(color: whiteTxt, fontSize: 19),
+                            ),
+                          ),
+                          TextFormField(
+                            controller: contactEditingControl,
+                            autofocus: false,
+                            keyboardType: TextInputType.name,
+                            textInputAction: TextInputAction.next,
+                            style: loginText,
+                            onSaved: (value) {
+                              contactEditingControl.text = value!;
+                            },
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return ("cannot be Empty");
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Colors.white), //<-- SEE HERE
+                              ),
+                              labelText: 'Contact',
                               labelStyle: TextStyle(color: whiteTxt, fontSize: 19),
                             ),
                           ),
@@ -267,7 +392,7 @@ class _CenterSignupState extends State<CenterSignup> {
                           ),
                           TextFormField(
                             autofocus: false,
-                            keyboardType: TextInputType.emailAddress,
+                            keyboardType: TextInputType.text,
                             textInputAction: TextInputAction.next,
                             controller: confirmPasswordEditingControl,
                             obscureText: true,
@@ -410,6 +535,11 @@ class _CenterSignupState extends State<CenterSignup> {
     workerModel.summary = summaryEditingControl.text;
     workerModel.students = studentsJoinedEditingControl.text;
     workerModel.password = passwordEditingControl.text;
+    workerModel.trainerName = trainerEditingControl.text;
+    workerModel.qualification = qualificationEditingControl.text;
+    workerModel.feeAmount = feeAmountEditingControl.text;
+    workerModel.feeDetails = feeDetailsEditingControl.text;
+    workerModel.contact = contactEditingControl.text;
 
     await firebaseFirestore
         .collection("CenterDetails")

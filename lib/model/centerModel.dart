@@ -7,6 +7,11 @@ class CenterModel {
   String? summary;
   String? students;
   String? password;
+  String? trainerName;
+  String? qualification;
+  String? feeAmount;
+  String? feeDetails;
+  String? contact;
 
   CenterModel({
     this.uid,
@@ -17,6 +22,11 @@ class CenterModel {
     this.summary,
     this.students,
     this.password,
+    this.trainerName,
+    this.qualification,
+    this.feeAmount,
+    this.feeDetails,
+    this.contact,
   });
 
   // receiving data from server
@@ -30,6 +40,11 @@ class CenterModel {
       summary: map['summary'],
       students: map['students'],
       password: map['password'],
+      trainerName: map['trainerName'],
+      qualification: map['qualification'],
+      feeDetails: map['feeDetails'],
+      feeAmount: map['feeAmount'],
+      contact: map['contact'],
     );
   }
 
@@ -44,6 +59,11 @@ class CenterModel {
       'summary': summary,
       'students': students,
       'password': password,
+      'trainerName': trainerName,
+      'qualification': qualification,
+      'feeAmount': feeAmount,
+      'feeDetails': feeDetails,
+      'contact': contact,
     };
   }
 }

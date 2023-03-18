@@ -105,27 +105,43 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                                         ),
                                         child: Padding(
                                           padding: const EdgeInsets.all(15.0),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                          child: Row(
                                             children: [
-                                              Text(
-                                                centerDocument['centerName'],
-                                                style: appText,
+                                              ClipRect(
+                                                borderRadius:
+                                                BorderRadius.circular(100),
+                                                child: Image.network(
+                                                  centerDocument['imageUrl'],
+                                                  fit: BoxFit.cover,
+                                                  width: 60,
+                                                  height: 60,
+                                                ),
                                               ),
-                                              SizedBox(
-                                                height: 5,
-                                              ),
-                                              Row(
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
                                                 children: [
-                                                  Icon(
-                                                    Icons.location_on,
-                                                    color: Colors.white,
-                                                    size: 15,
-                                                  ),
                                                   Text(
-                                                    centerDocument['location'],
-                                                    style: shadowTxt2,
+                                                    centerDocument[
+                                                        'centerName'],
+                                                    style: appText,
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Icon(
+                                                        Icons.location_on,
+                                                        color: Colors.white,
+                                                        size: 15,
+                                                      ),
+                                                      Text(
+                                                        centerDocument[
+                                                            'location'],
+                                                        style: shadowTxt2,
+                                                      ),
+                                                    ],
                                                   ),
                                                 ],
                                               ),

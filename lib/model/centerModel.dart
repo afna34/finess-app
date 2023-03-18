@@ -12,6 +12,7 @@ class CenterModel {
   String? feeAmount;
   String? feeDetails;
   String? contact;
+  String? imageUrl;
 
   CenterModel({
     this.uid,
@@ -27,6 +28,7 @@ class CenterModel {
     this.feeAmount,
     this.feeDetails,
     this.contact,
+    this.imageUrl,
   });
 
   // receiving data from server
@@ -45,6 +47,7 @@ class CenterModel {
       feeDetails: map['feeDetails'],
       feeAmount: map['feeAmount'],
       contact: map['contact'],
+      imageUrl: map['imageUrl'],
     );
   }
 
@@ -64,6 +67,7 @@ class CenterModel {
       'feeAmount': feeAmount,
       'feeDetails': feeDetails,
       'contact': contact,
+      'imageUrl': imageUrl,
     };
   }
 }

@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:fitness_app/constants/color.dart';
 import 'package:fitness_app/constants/color.dart';
 import 'package:fitness_app/constants/color.dart';
@@ -8,6 +11,7 @@ import 'package:fitness_app/constants/style.dart';
 import 'package:fitness_app/screens/centerHomeScreen/centerInterface.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../constants/color.dart';
 import '../../constants/color.dart';
@@ -30,6 +34,9 @@ class _CenterSignupState extends State<CenterSignup> {
   final _auth = FirebaseAuth.instance;
   String? errorMessage;
   final _formKey = GlobalKey<FormState>();
+  File? _image;
+  final picker = ImagePicker();
+  String? downloadUrl;
   final centerNameEditingControl = TextEditingController();
   final emailEditingControl = TextEditingController();
   final catchingEditingControl = TextEditingController();
@@ -89,6 +96,64 @@ class _CenterSignupState extends State<CenterSignup> {
                           SizedBox(
                             height: 25,
                           ),
+                      Stack(
+                        children: [
+                          Container(
+                            width: 130,
+                            height: 130,
+                            decoration: BoxDecoration(
+                              border: Border.all(width: 4, color: Colors.white),
+                              boxShadow: [
+                                BoxShadow(
+                                  spreadRadius: 3,
+                                  blurRadius: 10,
+                                  color: Colors.black.withOpacity(0.1),
+                                ),
+                              ],
+                              shape: BoxShape.circle,
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(100),
+                              child: _image != null
+                                  ? Image.file(
+                                _image!.absolute,
+                                width: 130,
+                                height: 130,
+                                fit: BoxFit.cover,
+                              )
+                                  : Image.asset(
+                                'images/beFitLogo.png',
+                                width: 130,
+                                height: 130,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: InkWell(
+                              onTap: () {
+                                getGallaryImage();
+                              },
+                              child: Container(
+                                height: 40,
+                                width: 40,
+                                decoration: BoxDecoration(
+                                  border:
+                                  Border.all(width: 4, color: Colors.white),
+                                  shape: BoxShape.circle,
+                                  color: Colors.blue,
+                                ),
+                                child: Icon(
+                                  Icons.add,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          ],
+                      ),
                           TextFormField(
                             controller: centerNameEditingControl,
                             autofocus: false,
@@ -420,7 +485,26 @@ class _CenterSignupState extends State<CenterSignup> {
                             height: 30,
                           ),
                           InkWell(
-                            onTap: () {
+                            onTap: () async{
+                              final name = centerNameEditingControl.text;
+                              Reference referenceRoot =
+                              FirebaseStorage.instance.ref();
+                              Reference referenceDirImages =
+                              referenceRoot.child('CenterProfile');
+                              Reference referenceImageToUpload =
+                              referenceDirImages.child('{$name}' +
+                                  DateTime.now()
+                                      .millisecondsSinceEpoch
+                                      .toString());
+                              try {
+                                await referenceImageToUpload
+                                    .putFile(_image!.absolute);
+                                downloadUrl =
+                                    await referenceImageToUpload.getDownloadURL();
+                              } catch (error) {
+                                Fluttertoast.showToast(
+                                    msg: 'You have to choose an image');
+                              }
                               signUp(emailEditingControl.text, passwordEditingControl.text);
                             },
                             child: Container(
@@ -540,6 +624,7 @@ class _CenterSignupState extends State<CenterSignup> {
     workerModel.feeAmount = feeAmountEditingControl.text;
     workerModel.feeDetails = feeDetailsEditingControl.text;
     workerModel.contact = contactEditingControl.text;
+    workerModel.imageUrl = downloadUrl;
 
     await firebaseFirestore
         .collection("CenterDetails")
@@ -551,5 +636,16 @@ class _CenterSignupState extends State<CenterSignup> {
         (context),
         MaterialPageRoute(builder: (context) => centerInterface()),
             (route) => false);
+  }
+
+  Future getGallaryImage() async {
+    final pickedFile =
+    await picker.pickImage(source: ImageSource.gallery, imageQuality: 5);
+    if (pickedFile != null) {
+
+      setState(() {
+        _image = File(pickedFile.path);
+      });
+    }
   }
 }

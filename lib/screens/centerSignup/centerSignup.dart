@@ -8,6 +8,7 @@ import 'package:fitness_app/constants/color.dart';
 import 'package:fitness_app/constants/color.dart';
 import 'package:fitness_app/constants/color.dart';
 import 'package:fitness_app/constants/style.dart';
+import 'package:fitness_app/screens/centerHomeScreen/centerHomeScreen.dart';
 import 'package:fitness_app/screens/centerHomeScreen/centerInterface.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -634,7 +635,7 @@ class _CenterSignupState extends State<CenterSignup> {
 
     Navigator.pushAndRemoveUntil(
         (context),
-        MaterialPageRoute(builder: (context) => centerInterface()),
+        MaterialPageRoute(builder: (context) => CenterHomeScreen()),
             (route) => false);
   }
 

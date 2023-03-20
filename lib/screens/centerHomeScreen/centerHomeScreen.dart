@@ -56,7 +56,8 @@ class _CenterHomeScreenState extends State<CenterHomeScreen> {
                         Text(centerDocument['catchingWord'],style: smllTitleBtn,),
                         SizedBox(height: 30,),
                         Row(children: [
-                          Column(children: [
+                          Column(
+                            children: [
                             Container(
                               width: 170,
                               decoration: BoxDecoration(
@@ -66,8 +67,16 @@ class _CenterHomeScreenState extends State<CenterHomeScreen> {
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(15.0),
-                                child:Column(children: [
-                                  Text(centerDocument['trainerName'],style: appText,),
+                                child:Column(
+                                  children: [
+                                  Row(
+                                    children: [
+                                      SizedBox(width: 10,),
+                                      Image.asset('images/Trainerprofile.png',fit: BoxFit.cover,width: 30,),
+                                      SizedBox(width: 10,),
+                                      Text(centerDocument['trainerName'],style: appText,),
+                                    ],
+                                  ),
                                   SizedBox(height: 10,),
                                   Text(centerDocument['qualification'],style: smllContnerTxt,)
                                 ],),
@@ -85,8 +94,15 @@ class _CenterHomeScreenState extends State<CenterHomeScreen> {
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(15.0),
-                                child:Column(children: [
-                                  Text(centerDocument['students'],style: appText,),
+                                child:Column(
+                                  children: [
+                                  Row(
+                                    children: [
+                                      Image.asset('images/goal.png',width: 30,),
+                                      SizedBox(width: 10,),
+                                      Text(centerDocument['students'],style: appText,),
+                                    ],
+                                  ),
                                   SizedBox(height: 10,),
                                   Text('Students now',style: smllContnerTxt,)
                                 ],),
@@ -103,7 +119,7 @@ class _CenterHomeScreenState extends State<CenterHomeScreen> {
                               child: Padding(
                                 padding: const EdgeInsets.all(15.0),
                                 child:Column(children: [
-                                  Icon(Icons.location_on,color: Colors.white,),
+                                  Image.asset('images/locationIcon.png',width: 35,),
                                   SizedBox(height: 10,),
                                   Text(centerDocument['location'],style: appText,)
                                 ],),

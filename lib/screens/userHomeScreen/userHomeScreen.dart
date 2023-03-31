@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fitness_app/screens/userHomeScreen/centerDetailScreen/center_detail_scren.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/color.dart';
@@ -50,7 +51,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                               padding: const EdgeInsets.all(25.0),
                               child: Column(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                                MainAxisAlignment.spaceAround,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
@@ -90,57 +91,70 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                             } else {
                               return Column(
                                 children:
-                                    snapshot.data!.docs.map((centerDocument) {
+                                snapshot.data!.docs.map((centerDocument) {
                                   return Column(
                                     children: [
-                                      Container(
-                                        margin: EdgeInsets.symmetric(
-                                            horizontal: 15.0),
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        decoration: BoxDecoration(
-                                          color: secondayColor,
-                                          borderRadius:
-                                              BorderRadius.circular(25),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(15.0),
-                                          child: Row(
-                                            children: [
-                                              CircleAvatar(
-                                                backgroundImage:
-                                                NetworkImage(centerDocument['imageUrl'],),
-                                              ),
-                                              SizedBox(width: 20,),
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    centerDocument[
-                                                        'centerName'],
-                                                    style: appText,
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Icon(
-                                                        Icons.location_on,
-                                                        color: Colors.white,
-                                                        size: 15,
-                                                      ),
-                                                      Text(
-                                                        centerDocument[
-                                                            'location'],
-                                                        style: shadowTxt2,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.push(context,
+                                              MaterialPageRoute(
+                                                  builder: (ctx) =>
+                                                      CenterDetailScreen(
+                                                          uid: centerDocument['uid'])));
+                                        },
+                                        child: Container(
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: 15.0),
+                                          width:
+                                          MediaQuery
+                                              .of(context)
+                                              .size
+                                              .width,
+                                          decoration: BoxDecoration(
+                                            color: secondayColor,
+                                            borderRadius:
+                                            BorderRadius.circular(25),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(15.0),
+                                            child: Row(
+                                              children: [
+                                                CircleAvatar(
+                                                  backgroundImage:
+                                                  NetworkImage(
+                                                    centerDocument['imageUrl'],),
+                                                ),
+                                                SizedBox(width: 20,),
+                                                Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      centerDocument[
+                                                      'centerName'],
+                                                      style: appText,
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Icon(
+                                                          Icons.location_on,
+                                                          color: Colors.white,
+                                                          size: 15,
+                                                        ),
+                                                        Text(
+                                                          centerDocument[
+                                                          'location'],
+                                                          style: shadowTxt2,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),

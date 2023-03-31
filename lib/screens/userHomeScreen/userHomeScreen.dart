@@ -22,12 +22,8 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
       backgroundColor: primaryColor,
       body: ListView(
         children: [
-          Column(
-            children: [
-              Image.asset(
-                'images/userImage.png',
-              ),
-            ],
+          Image.asset(
+            'images/userImage.png',
           ),
           StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitness_app/constants/color.dart';
 import 'package:fitness_app/constants/style.dart';
+import 'package:fitness_app/screens/centerHomeScreen/centerProfileEditing/center_profile_editing.dart';
 import 'package:flutter/material.dart';
 
 class CenterHomeScreen extends StatefulWidget {
@@ -17,6 +18,19 @@ class _CenterHomeScreenState extends State<CenterHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 10.0),
+            child: IconButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (ctx)=>CenterProfileEditing()));
+            }, icon: Icon(Icons.settings_outlined,size: 30,)),
+          )
+        ],
+      ),
       backgroundColor: primaryColor,
       body: SafeArea(
         child: StreamBuilder<QuerySnapshot>(

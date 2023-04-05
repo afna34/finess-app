@@ -69,21 +69,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/welcome.png
-    - images/userImage.png
-    - images/beFitLogo.png
-    - images/Trainerprofile.png
-    - images/goal.png
-    - images/locationIcon.png
-    - images/editProfile.png
-    - images/equpmt1.png
-    - images/equpmt2.png
-    - images/smallocation.png
-    - images/searchIcone.png
-    - images/backIcone.png
-    - images/editIcone.png
-    - images/profilePicEdit.png
-
+    - images/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

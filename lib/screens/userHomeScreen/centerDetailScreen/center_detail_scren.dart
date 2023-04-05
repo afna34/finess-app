@@ -209,12 +209,12 @@ class _CenterDetailScreenState extends State<CenterDetailScreen> {
                                       borderRadius: BorderRadius.circular(20)),
                                   width: 100,
                                   height: 150,
-                                  padding: EdgeInsets.all(15),
+                                  padding: EdgeInsets.all(10),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Image.asset('images/dumple.png',),
+                                      Image.asset('images/dumple.png',width: 50,),
                                     ],
                                   ),
                                 ),Container(
@@ -223,16 +223,12 @@ class _CenterDetailScreenState extends State<CenterDetailScreen> {
                                       borderRadius: BorderRadius.circular(20)),
                                   width: 100,
                                   height: 150,
-                                  padding: EdgeInsets.all(15),
+                                  padding: EdgeInsets.all(3),
                                   child: Column(
                                     crossAxisAlignment:
                                     CrossAxisAlignment.start,
                                     children: [
-                                      Icon(
-                                        Icons.fitness_center,
-                                        color: Colors.white,
-                                        size: 35,
-                                      ),
+                                      Image.asset('images/running.png',width: 50,),
                                     ],
                                   ),
                                 ),Container(

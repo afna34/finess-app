@@ -9,7 +9,6 @@ import 'package:fitness_app/constants/color.dart';
 import 'package:fitness_app/constants/color.dart';
 import 'package:fitness_app/constants/style.dart';
 import 'package:fitness_app/screens/centerHomeScreen/centerHomeScreen.dart';
-import 'package:fitness_app/screens/centerHomeScreen/centerInterface.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';

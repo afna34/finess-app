@@ -111,7 +111,7 @@ class _CenterProfileEditingState extends State<CenterProfileEditing> {
                               labelText: 'Center Name',
                               labelStyle: TextStyle(color: whiteTxt, fontSize: 19),
                             ),
-                          ),$^ $^
+                          ),
                           TextFormField(
                             controller: locationEditingControl,
                             autofocus: false,

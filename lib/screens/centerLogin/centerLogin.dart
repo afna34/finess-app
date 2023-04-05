@@ -5,7 +5,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../constants/color.dart';
 import '../../constants/style.dart';
-import '../centerHomeScreen/centerInterface.dart';
 import '../centerSignup/centerSignup.dart';
 
 class CenterLogin extends StatefulWidget {

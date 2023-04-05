@@ -214,11 +214,7 @@ class _CenterDetailScreenState extends State<CenterDetailScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Icon(
-                                        Icons.fitness_center,
-                                        color: Colors.white,
-                                        size: 35,
-                                      ),
+                                      Image.asset('images/dumple.png',),
                                     ],
                                   ),
                                 ),Container(

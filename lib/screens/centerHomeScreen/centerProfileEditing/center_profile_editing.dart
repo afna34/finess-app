@@ -161,30 +161,6 @@ class _CenterProfileEditingState extends State<CenterProfileEditing> {
                             ),
                           ),
                           TextFormField(
-                            controller: summaryEditingControl,
-                            autofocus: false,
-                            keyboardType: TextInputType.name,
-                            textInputAction: TextInputAction.next,
-                            style: loginText,
-                            onSaved: (value) {
-                              summaryEditingControl.text = value!;
-                            },
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return ("cannot be Empty");
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide:
-                                BorderSide(color: Colors.white), //<-- SEE HERE
-                              ),
-                              labelText: 'Short summary',
-                              labelStyle: TextStyle(color: whiteTxt, fontSize: 19),
-                            ),
-                          ),
-                          TextFormField(
                             controller: trainerEditingControl,
                             autofocus: false,
                             keyboardType: TextInputType.name,
@@ -205,30 +181,6 @@ class _CenterProfileEditingState extends State<CenterProfileEditing> {
                                 BorderSide(color: Colors.white), //<-- SEE HERE
                               ),
                               labelText: 'Trainer name',
-                              labelStyle: TextStyle(color: whiteTxt, fontSize: 19),
-                            ),
-                          ),
-                          TextFormField(
-                            controller: studentsJoinedEditingControl,
-                            autofocus: false,
-                            keyboardType: TextInputType.name,
-                            textInputAction: TextInputAction.next,
-                            style: loginText,
-                            onSaved: (value) {
-                              studentsJoinedEditingControl.text = value!;
-                            },
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return ("cannot be Empty");
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide:
-                                BorderSide(color: Colors.white), //<-- SEE HERE
-                              ),
-                              labelText: 'Number of students joined',
                               labelStyle: TextStyle(color: whiteTxt, fontSize: 19),
                             ),
                           ),
@@ -256,6 +208,31 @@ class _CenterProfileEditingState extends State<CenterProfileEditing> {
                               labelStyle: TextStyle(color: whiteTxt, fontSize: 19),
                             ),
                           ),
+                          TextFormField(
+                            controller: studentsJoinedEditingControl,
+                            autofocus: false,
+                            keyboardType: TextInputType.name,
+                            textInputAction: TextInputAction.next,
+                            style: loginText,
+                            onSaved: (value) {
+                              studentsJoinedEditingControl.text = value!;
+                            },
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return ("cannot be Empty");
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Colors.white), //<-- SEE HERE
+                              ),
+                              labelText: 'Number of students joined',
+                              labelStyle: TextStyle(color: whiteTxt, fontSize: 19),
+                            ),
+                          ),
+
                           TextFormField(
                             controller: feeAmountEditingControl,
                             autofocus: false,

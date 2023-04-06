@@ -72,12 +72,13 @@ class _CenterDetailScreenState extends State<CenterDetailScreen> {
                             children: [
                               Container(
                                 width: 170,
+                                height: 130,
                                 decoration: BoxDecoration(
                                   color: secondayColor,
                                   borderRadius: BorderRadius.circular(25),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(15.0),
+                                  padding: EdgeInsets.fromLTRB(10, 30, 0, 0),
                                   child: Column(
                                     children: [
                                       Row(
@@ -186,7 +187,7 @@ class _CenterDetailScreenState extends State<CenterDetailScreen> {
                         ],
                       ),
                       SizedBox(
-                        height: 30,
+                        height: 20,
                       ),
                       Align(
                         alignment: Alignment.bottomLeft,
@@ -207,54 +208,102 @@ class _CenterDetailScreenState extends State<CenterDetailScreen> {
                                   decoration: BoxDecoration(
                                       color: secondayColor,
                                       borderRadius: BorderRadius.circular(20)),
-                                  width: 100,
-                                  height: 150,
+                                  width: 110,
+                                  height: 142,
                                   padding: EdgeInsets.all(10),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Image.asset('images/dumple.png',width: 50,),
+                                      Container(
+                                        padding: EdgeInsets.fromLTRB(13, 40, 0, 0),
+                                        child: Column(
+                                          children: [
+                                            Text('Workout',style:appText,),
+                                            Text('2 Hour',style: shadowTxt2,)
+                                          ],
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),Container(
                                   decoration: BoxDecoration(
                                       color: secondayColor,
                                       borderRadius: BorderRadius.circular(20)),
-                                  width: 100,
-                                  height: 150,
-                                  padding: EdgeInsets.all(3),
+                                  width: 110,
+                                  height: 142,
+                                  padding: EdgeInsets.all(0),
                                   child: Column(
                                     crossAxisAlignment:
                                     CrossAxisAlignment.start,
                                     children: [
                                       Image.asset('images/running.png',width: 50,),
+                                      Container(
+                                        padding: EdgeInsets.fromLTRB(27, 27, 0, 0),
+                                        child: Column(
+                                          children: [
+                                            Text('Running',style:appText,),
+                                            Text('12 Km',style: shadowTxt2,)
+                                          ],
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),Container(
                                   decoration: BoxDecoration(
                                       color: secondayColor,
                                       borderRadius: BorderRadius.circular(20)),
-                                  width: 100,
-                                  height: 150,
-                                  padding: EdgeInsets.all(15),
+                                  width: 110,
+                                  height: 142,
+                                  padding: EdgeInsets.all(1),
                                   child: Column(
                                     crossAxisAlignment:
                                     CrossAxisAlignment.start,
                                     children: [
-                                      Icon(
-                                        Icons.fitness_center,
-                                        color: Colors.white,
-                                        size: 35,
+                                      Image.asset('images/water-bottle.png',width: 50,),
+                                      Container(
+                                        padding: EdgeInsets.fromLTRB(27, 33, 0, 0),
+                                        child: Column(
+                                          children: [
+                                            Text('Water',style:appText,),
+                                            Text('2.7  litre',style: shadowTxt2,)
+                                          ],
+                                        ),
                                       ),
                                     ],
                                   ),
                                 ),
+                //                     Container(
+                //                     decoration: BoxDecoration(
+                // color: secondayColor,
+                // borderRadius: BorderRadius.circular(20)),
+                // width: 110,
+                // height: 142,
+                // padding: EdgeInsets.all(0),
+                // child: Column(
+                // crossAxisAlignment:
+                // CrossAxisAlignment.start,
+                // children: [
+                // Image.asset('images/sleep.png',width: 50,),
+                //                 Container(
+                //                   padding: EdgeInsets.fromLTRB(27, 38, 0, 0),
+                //                   child: Column(
+                //                     children: [
+                //                       Text('Sleep',style:appText,),
+                //                       Text('7 Hour',style: shadowTxt2,)
+                //                     ],
+                //                   ),
+                //                 ),
+                // ],
+                // ),
+                // ),
                               ],
                             ),
                           ],
                         ),
                       ),
+                      SizedBox(height: 15,),
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Column(
